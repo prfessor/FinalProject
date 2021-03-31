@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Linq.Expressions;
-using Entities.Abstract;
+using Core.Entities;
 
-namespace DataAccess.Abstract
+namespace Core.DataAccess.Abstract
 {
 
     public interface IEntityRepository<T> where T:class,IEntity, new() //generic constraint //class = referans tip olabilir anlamına gelir. //IEntity = 
                                                                  //IEntity veya IEntity implemente eden bir nesne olabilir
-                                                                 //new yazarak da IEntity nin kendisi hariç sadece implemente edildiği nesneleri yazabiliyor oluyoruz.
+                                                                //new yazarak da IEntity nin kendisi hariç sadece implemente edildiği nesneleri yazabiliyor oluyoruz.
     {
         List<T> GetAll(Expression<Func<T, bool>> filter = null);
         T Get(Expression<Func<T, bool>> filter=null);

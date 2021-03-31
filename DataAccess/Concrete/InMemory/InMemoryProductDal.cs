@@ -1,5 +1,6 @@
 ﻿using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace DataAccess.Concrete.InMemory
 {
     public class InMemoryProductDal : IProductDal
     {
-        List<Product> _products;
+        List<Product> _products; 
         public InMemoryProductDal()
         {
             _products = new List<Product> {
@@ -33,7 +34,7 @@ namespace DataAccess.Concrete.InMemory
 
         public void Delete(Product product)
         {
-            //***_products.Remove(product);*** //bu kod çalışmaz çünkü fonksiyona gönderilen referansın hangisi olduğı belli değil
+            //***_products.Remove(product);*** //bu kod çalışmaz çünkü fonksiyona gönderilen referansın hangisi olduğı belli değil, daha doğrusu gönderilen referans listedekilerle uyuşmuyor.
             Product productToDelete = null;
             //foreach (var p in _products)
             //{
@@ -45,10 +46,7 @@ namespace DataAccess.Concrete.InMemory
             _products.Remove(productToDelete);
 	    }
 
-        public Product Get()
-        {
-            throw new NotImplementedException();
-        }
+        
 
         public Product Get(Expression<Func<Product, bool>> filter = null)
         {
@@ -61,6 +59,11 @@ namespace DataAccess.Concrete.InMemory
         }
 
         public List<Product> GetAll(Expression<Func<Product, bool>> filter = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<ProductDetailDto> GetProductDetails()
         {
             throw new NotImplementedException();
         }
